@@ -39,3 +39,5 @@
   - stacked bar/spine chart (for variable comparison)
   - waffle charts????
   - rose diagrams (temporal or directional context can justify usage)
+
+- something something "geom bar stat=identity" to "take y as is"
