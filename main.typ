@@ -41,3 +41,46 @@
   - rose diagrams (temporal or directional context can justify usage)
 
 - something something "geom bar stat=identity" to "take y as is"
+
+- $alpha$ level CI is $hat(x) plus.minus z_(1-alpha/2) dot "SE"(hat(x))$
+
+- 1d chisq test: $H_A$ is "at least one category differs"
+
+  `chisq.test(table(penguins$species))`
+
+- CI interpretation
+  - If CIs don't overlap $-->$ significant difference
+  - If CIs overlap $-->$ a little ambiguous
+  - If CIs overlap $-->$ a lot no significant difference
+
+- multiple testing:
+  - have multiple pairwise comparisons via CI eyeballing? Type 1 error is now above 5%!!!
+  - correct by inflating $p$ values
+  - Bonferroni Correction: 
+    - making $K$ comparisons $-->$ reject iff $p <= alpha/K$.
+    - easy to impl and popular but inflates $p$ the most
+    - CIs: plot $(1-alpha)%$ CIs $-->$ plot $(1 - alpha/K)%$ CIs
+
+- 2d chisq test: $H_A$ is "$A,B$ independent"
+
+  `chisq.test(table(penguins$species, penguins$island))`
+  - visualize this with mosaic plots
+
+- mosaic plots: can shade by Pearson residuals
+  - more positive p.r $-->$ more counts than expected, more neg is vice versa
+  - we might reject null for the global chisq test but see all white residuals: can't reject null for individual local tests.
+
+- 1d quant
+  - boxplots: only summary stats: bad!
+  - hist: see dist, bin width matters. 
+  - density curves: conditional dists
+
+- estimation schools of thought:
+  - parametric: assume dist, est params (eg MLE, 3623X)
+  - nonparametric: make few assumptions, use whole dataset (density curves, regression lines??)
+
+- kernel density estimation
+  - place lil dist on every $x_i$
+  - usually normal, but many exist (fuck it triangle. things can help maintain strict left right dist bounds if needed)
+  - bandwidth (higher is more smooth dist): ggplot alr uses Gaussian reference rule of  thumb, set to $1.06 dot sigma_"sample" dot n^(-1\/5)$.
+  - adjust bandwith via `geom_density(adjust = <multiplier>)`
