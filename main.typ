@@ -84,3 +84,29 @@
   - usually normal, but many exist (fuck it triangle. things can help maintain strict left right dist bounds if needed)
   - bandwidth (higher is more smooth dist): ggplot alr uses Gaussian reference rule of  thumb, set to $1.06 dot sigma_"sample" dot n^(-1\/5)$.
   - adjust bandwith via `geom_density(adjust = <multiplier>)`
+
+- Kolmogorov-Smirnov (KS) Test 
+  - $H_A : $distributions different
+  - stat: largest gap
+  - 1 sample: compare ECDF to theoretical distribution
+    ```R
+    ks.test(
+      x = penguins$flipper_length_mm, 
+      y = "pnorm",
+      mean = flipper_length_mean, 
+      sd = flipper_length_sd
+    )
+    ```
+  - 2 sample: compare two ECDFs
+    ```R
+    ks.test(rap_duration, y = rock_duration) # both straight up vec[int]
+    ```
+- Power: prob of reject when you're supposed to (null is false) increased by:
+  - sample size
+  - reduce variance/error
+  - increase differences/effects
+  - choose right test! i.e. KS is underpowered compared to t.test/Barlett
+    ```R
+    t.test(sample_rap_duration, sample_pop_duration) # for mean
+    bartlett.test(list(sample_rap_duration, sample_pop_duration)) # for variance/stddev
+    ```
