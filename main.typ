@@ -105,8 +105,8 @@
   - sample size
   - reduce variance/error
   - increase differences/effects
-  - choose right test! i.e. KS is underpowered compared to t.test/Barlett
+  - choose right test! i.e. KS is underpowered compared to t.test/Barlett (sensitive to non-normality)
     ```R
-    t.test(sample_rap_duration, sample_pop_duration) # for mean
-    bartlett.test(list(sample_rap_duration, sample_pop_duration)) # for variance/stddev
+    t.test(sample_rap_duration, sample_pop_duration) # H_A : mean not all equal
+    bartlett.test(list(sample_rap_duration, sample_pop_duration)) # H_A: variances not all equal
     ```
