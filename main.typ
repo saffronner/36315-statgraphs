@@ -110,3 +110,13 @@
     t.test(sample_rap_duration, sample_pop_duration) # H_A : mean not all equal
     bartlett.test(list(sample_rap_duration, sample_pop_duration)) # H_A: variances not all equal
     ```
+
+- Q $->$ Q is scatterplot, `geom_point()` and note `scale_color_gradient(low = "darkblue", high = "darkorange")`
+
+- linreg for the like fourth time!!!
+  - assumptions:
+    + conditional dist is the normal
+    + linearity (residual vs fit apparently?)
+    + mean 0 (residual vs fit plot)
+    + constant variance (residual vs fit plot)
+    + indep. errors (must make this decision based off of experiment design)
